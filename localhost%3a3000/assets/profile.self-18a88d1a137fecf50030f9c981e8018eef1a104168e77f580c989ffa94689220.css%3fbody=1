@@ -1,0 +1,75 @@
+
+
+.sign-up-table {
+
+}
+
+
+#profile-pic-center{
+	text-align: right!important;
+}
+
+/** { border: 1px solid red; }
+*/
+
+
+.profilepic{
+
+	width:100px; 
+	height:100px; 
+	border-radius:50%;
+	text-align: center!important;
+
+
+}
+
+
+.profile {
+	width: 50%;
+	margin:auto;
+	text-align: center;
+
+
+}
+
+.Edit {
+	width: 50%;
+	margin:auto;
+	text-align: center;
+
+}
+
+
+
+
+.profile_pic_navbar{
+	width:40px; 
+	height:40px; 
+	border-radius:50%;
+}
+
+.card{
+	/* width: 50%; */
+}
+
+.button-login {
+  float: left;
+  border: none;
+  color: gray;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  outline: none;
+}
+
+#link-to-forgot-password:hover,
+#link-to-forgot-password:focus{
+	background: none;
+	color: gray
+}
+
+
+
+

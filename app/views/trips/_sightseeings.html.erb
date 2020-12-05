@@ -1,0 +1,33 @@
+<div class="content-title">
+    <h3 class="d-inline" style="size: 1.5rem">Sightseeings</h3> 
+    <button type="button" class="btn btn-default btn-sm d-none">
+            <i class="fas fa-edit"></i>
+    </button>
+</div>
+
+
+
+<div class="activities-container d-flex justify-content-center" style="flex-grow">
+    <% @sightseeings[x..y].each_with_index do |s, n| %>
+        <div class="card" style="width: 18rem; d-inline-block">
+                    <button type="button" class="close d-none" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                <%if FastImage.size(s.picture) == nil %>
+                    <%= image_tag('/alt.png', :class => "card-img-top", :alt => "Card image cap") %>
+                <%else%>
+                    <%= image_tag(s.picture, :class => "card-img-top", :alt => "Card image cap") %>
+                <%end%>
+                <div class="card-body">
+                    <h5 class="card-title"><%=s.title%></h5>
+                    <div>           
+                        <%#= image_tag match_stars(@ratings['sights'][x+n], "regular")%> <!-- based on --> <%=link_to "#{@reviews['sights'][x+n]} reviews", s.link %> 
+                    </div>
+                   <!--  <div class="float-right align-bottom" style="vertical-align: bottom">
+                        Powered by <%#= image_tag "yelp_logo/Yelp_trademark_RGB_outline", :style => "width: 80px; margin: 0px" %>
+                    </div> -->
+                    <p class="actionid d-none"><%=s.id%></p>
+                </div>
+        </div>
+    <% end %>
+</div>

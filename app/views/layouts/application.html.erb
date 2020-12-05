@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pegatrip</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+    <link rel='shortcut icon' type='image/x-icon' href='/Pegatrip_White_Logo_Classic.png' />
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    
+
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track'=> true %>
+
+
+  </head>
+
+  <body style="margin: 0px">
+    <nav class="navbar container-fluid flex flex-grow" style="padding-top: 30px; padding-bottom: 30px">
+      <div class="d-flex justify-content-start" style="margin-left: 8vw">
+     
+      <a id="logo-image" href="<%=root_path%>"><img src="/Pegatrip_White_Logo_Classic.png" class="d-inline-block" style="height: 50px"></a>
+
+      <div id="search-div" class="form-inline my-2 my-lg-0 d-inline-block">
+          <%= form_tag actions_search_path, id: "action-search", method: :get do %>
+
+            <%= text_field_tag "term", nil, id: "search", list: "list", placeholder: "Search", class: "form-control mr-sm-2" %>
+
+            <datalist id="list"></datalist>
+          <% end %>
+      </div>
+      </div>
+
+
+      <div id="header profile-pic-and-sign-button" class="d-flex justify-content-end" style="margin-right: 8vw">
+        
+            <% if signed_in? && current_user.avatar.present? %>
+              <li class="d-inline-block nav-item dropdown">
+                <div class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= image_tag current_user.avatar.url, :class => "profile_pic_navbar" %>
+                </div>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="<%= user_path(current_user.id) %>">My trips</a>
+                  <a class="dropdown-item" href="<%= edit_user_path(current_user.id) %>">Edit profile</a>
+                  <div class="dropdown-divider"></div>
+                  <%= button_to "Delete account", user_path(current_user.id), method: :delete, data: {confirm: 'Are you sure you want to delete your account?'}, :class => "dropdown-item btn btn-danger"  %>
+                </div>
+              </li>
+
+              <% elsif signed_in? && current_user.avatar.url == nil %>
+                <li class="d-inline-block nav-item dropdown">
+                  <div class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= image_tag '/default_profile.png', :class => "profile_pic_navbar"  %>
+                  </div>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<%= user_path(current_user.id) %>">My trips</a>
+                    <a class="dropdown-item" href="<%= edit_user_path(current_user.id) %>">Edit profile</a>
+                    <div class="dropdown-divider"></div>
+                    <%= button_to "Delete account", user_path(current_user.id), method: :delete, data: { confirm: 'Are you sure you want to delete your account?' }, :class => "dropdown-item btn btn-danger"  %>
+                  </div>
+                </li>
+              <% end %>
+
+        <div class="d-inline-block" style="margin: auto">
+          <% if signed_in? %>
+            <%= button_to t(".sign_out"), sign_out_path, method: :delete, :id=>"signout", :class => "btn btn-outline", :style => "width: 100px; color: #3ac9c6; border-color: #3ac9c6" %>
+          <% else -%>
+            <div align="center">  
+              <button type="button" name="login" id="login" class="btn btn-outline" style="width: 100px; color: #3ac9c6; border-color: #3ac9c6" data-toggle="modal" data-target="#loginModal" onclick="show_login()">Login</button>  
+            </div>
+        </div>
+      </div>
+
+            <div id="loginModal" class="modal fade" role="dialog">  
+              <div class="modal-dialog">  
+           <!-- Modal content-->  
+                   <div class="modal-content">  
+                        <div class="modal-header"> 
+                          <div class="container-fluid d-inline-block d-flex justify-content-center pr-0">
+                             <input type="button"  class="button-login" style="width: 50%; border-color: white" onclick="show_login();"  value="Sign in"> 
+                             <input type="button" class="button-login" style="width: 50%; border: 1px solid white; border-left: 1px solid gray" onclick="show_signup();" value="Sign up">
+                             </div>
+                             <button type="button" class="close" data-dismiss="modal">&times;</button> 
+                        </div> 
+                        <br/> 
+                        <div class="modal-body">  
+                          <section id="login_div">
+                            <%= render partial: '/sessions/form' %>
+                          </section>
+                          <section id="register_div">
+                            <% @user = User.new %>
+                            <%= form_for @user do |form| %>
+                              <%= render partial: '/users/form', object: form %>
+                            <% end %>
+                          </section>
+                        </div>
+                   </div>
+              </div>
+            </div>
+          <% end -%>
+        </div>
+      </nav>
+
+  
+    <% flash.each do |key, value| %>
+        <div class=" alert alert-<%=key%>">
+           <%= value %>
+        </div>
+     <% end %>
+
+ 
+    <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+
+</html>

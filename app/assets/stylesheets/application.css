@@ -1,0 +1,114 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/** { border: 1px solid red; }
+*/
+
+#search-div{
+  margin-left: 10px;
+  padding-top: 7px;
+}
+
+#search{
+  opacity: 0.6;
+  height: 38px;
+}
+
+#myVideo {
+  position: relative;
+  right: 0;
+  min-width: 100%; 
+  object-fit: contain;
+  z-index: -1;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  opacity: 3;
+  letter-spacing: 2px;
+  top: 190px;
+
+}
+
+.back-video{
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) );
+
+}
+
+.welcome-text {
+  color: #3ac9c6;
+  font-size: 50px;
+  text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
+}
+
+.paragraph-text {
+	
+	width: 70%; 
+	margin-top: 50px; 
+	font-family: 'Open Sans';
+  font-size: 15px;
+  	font-style: normal;
+  	font-weight: 400;
+  	src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
+
+#logo-image:hover,
+#logo-image:focus{
+	background: none;
+}
+/*section {
+	background-color: #FBFEF9;
+	height: 100%;
+}*/
+
+.card-title{
+	color: #3E8989!important;
+	font-weight: bold;
+}
+.button-login {
+  float: left;
+  border: none;
+  color: gray;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  outline: none;
+}
+
+a:hover,
+#link-to-forgot-password:focus{
+	background: none;
+	color: gray
+}
+
+
+.profile_pic_navbar{
+	width:40px; 
+	height:40px; 
+	border-radius:50%;
+}
+
+h5{
+  font-family: Arial, Helvetica, sans-serif!important;
+  letter-spacing: 0px!important;
+}

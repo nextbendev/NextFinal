@@ -1,0 +1,274 @@
+  
+  <div class="container-fluid px-0">
+	<div class="back-video">
+	    <video autoplay muted loop id="myVideo" style="width: 100%"> 
+		    <source src="/videos/video.mp4" type="video/mp4">
+		  	Your browser does not support HTML5 video.
+		</video>
+	  </div>
+  
+	  <div class="content" >
+			<h1 class="text-center h2 mb-3 font-weight-light welcome-text"> Welcome to Pegatrip! </h1> <br/>
+	       	<p class="text-center mb-3 h6 font-italic font-weight-ligh" style="font-weight: lighter; font-family:Lucida Console; "> <i>Your journey starts now!</i> </p>
+
+			 <br/>
+
+
+			<button type="button" name="wheel-modal" id="wheelModal" class="btn" style="width: 20%; height: 10%; color: #3ac9c6; border-color: #3ac9c6; border-radius: 50px 50px" data-toggle="modal" data-target="#wheel-modal"> Generate a random trip </button>
+
+			<div class="modal fade" id="wheel-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black" >
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content" style="width: 1000px">
+				      <div class="modal-header">
+				        <h5> Please fill up your preferences for a trip or let us choose everything for you!</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<form action="/trips" id="generation-form">
+						  <div class="form-group">
+						    <label>Course</label>
+						    <div type="input" class="form-control text-left" style="color: black">Bootcamp Coding</div>
+						  </div>
+						  <div class="form-group">
+						    <label for="locationlist" >Location:</label>
+						    <select id="locationlist" class="form-control" name="location">
+										<option>Amsterdam</option>
+										<option>Arlington</option>
+										<option>Asheville</option>
+										<option>Atlanta</option>
+										<option>Austin</option>
+										<option>Bali</option>
+										<option>Bangalore</option>
+										<option>Barcelona</option>
+										<option>Bellevue</option>
+										<option>Belo Horizonte</option>
+										<option>Berkeley</option>
+										<option>Berlin</option>
+										<option>Bogota</option>
+										<option>Bordeaux</option>
+										<option>Boston</option>
+										<option>Boulder</option>
+										<option>Brisbane</option>
+										<option>Brussels</option>
+										<option>Buenos Aires</option>
+										<option>Calgary</option>
+										<option>Cape Town</option>
+										<option>Caracas</option>
+										<option>Casablanca</option>
+										<option>Charlotte</option>
+										<option>Chattanooga</option>
+										<option>Chengdu</option>
+										<option>Chicago</option>
+										<option>Cincinnati</option>
+										<option>Cleveland</option>
+										<option>Colorado Springs</option>
+										<option>Columbus</option>
+										<option>Copenhagen</option>
+										<option>Costa Rica</option>
+										<option>D.C.</option>
+										<option>Dallas</option>
+										<option>Denver</option>
+										<option>Detroit</option>
+										<option>Evanston</option>
+										<option>Free</option>
+										<option>Grand Rapids</option>
+										<option>Guadalajara</option>
+										<option>Halifax</option>
+										<option>Hong Kong</option>
+										<option>Houston</option>
+										<option>Irvine</option>
+										<option>Johannesburg</option>
+										<option>Kansas City</option>
+										<option>Kuala Lumpur</option>
+										<option>Kyoto</option>
+										<option>Lehi</option>
+										<option>Lille</option>
+										<option>Lisbon</option>
+										<option>London</option>
+										<option>Los Angeles</option>
+										<option>Louisville</option>
+										<option>Madrid</option>
+										<option>Maracaibo</option>
+										<option>Marseille</option>
+										<option>Medellin</option>
+										<option>Melbourne</option>
+										<option>Memphis</option>
+										<option>Mexico City</option>
+										<option>Miami</option>
+										<option>Milan</option>
+										<option>Minneapolis</option>
+										<option>Montreal</option>
+										<option>NYC</option>
+										<option>Nantes</option>
+										<option>Nashville</option>
+										<option>New Haven</option>
+										<option>New Jersey</option>
+										<option>New Orleans</option>
+										<option>Oakland</option>
+										<option>Online</option>
+										<option>Orange City</option>
+										<option>Orange County</option>
+										<option>Orlando</option>
+										<option>Paris</option>
+										<option>Philadelphia</option>
+										<option>Phoenix</option>
+										<option>Pittsburgh</option>
+										<option>Playa del Carmen</option>
+										<option>Portland</option>
+										<option>Porto</option>
+										<option>Providence</option>
+										<option>Raleigh-Durham</option>
+										<option>Rio de Janeiro</option>
+										<option>Saint Louis</option>
+										<option>Salt Lake City</option>
+										<option>San Antonio</option>
+										<option>San Diego</option>
+										<option>San Francisco</option>
+										<option>San Jose</option>
+										<option>Santa Clara</option>
+										<option>Santa Monica</option>
+										<option>Santiago</option>
+										<option>Sao Paulo</option>
+										<option>Savannah</option>
+										<option>Seattle</option>
+										<option>Shanghai</option>
+										<option>Silicon Valley</option>
+										<option>Singapore</option>
+										<option>Sydney</option>
+										<option>Tampa</option>
+										<option>Tel Aviv</option>
+										<option>Tokyo</option>
+										<option>Toronto</option>
+										<option>Truckee</option>
+										<option>Valencia</option>
+										<option>Vancouver</option>
+										<option>Victoria</option>
+										<option>Washington</option>
+										<option>Wilmington</option>
+								</select>
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Start date</label>
+						    <input type="date" class="form-control" id="exampleInputPassword1" name="start_date" placeholder="Start day of your trip" value="<%=params[:start_date]%>">
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">End date</label>
+						    <input type="date" class="form-control" id="exampleInputPassword1" name="end_date" placeholder="End day of your trip" value="<%=params[:end_date]%>">
+						  </div> <br/>
+						  <button type="submit" class="btn d-inline-block" style="border-color: #3ac9c6; color: #3ac9c6">Generate random trips</button>
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+			</div>       	
+	   </div> 	  
+</div>
+
+
+<div class="d-flex justify-content-center" style="margin-top: -250px">
+	<div class="card-deck text-center" style="margin-top: 4vh; width: 70vw">
+	  <div class="card">
+	    <img src="activity.jpg" class="card-img-top" alt="...">
+	    <div class="card-body">
+	      <h5 class="card-title">Activity</h5>
+	      <p class="card-text">We will make sure to get the most exciting activities for your unexpected trip! No matter where the lucky wheel will bring you today! </p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	  </div>
+	  <div class="card">
+	    <img src="food.jpg" class="card-img-top" alt="...">
+	    <div class="card-body">
+	      <h5 class="card-title">Food</h5>
+	      <p class="card-text">You will be always updated with the best restaurants with different cuisine around your location! </p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	  </div>
+	  <div class="card">
+	    <img src="sightseeing.jpg" class="card-img-top" alt="...">
+	    <div class="card-body">
+	      <h5 class="card-title">Sightseeing</h5>
+	      <p class="card-text">Check the most popular spots and historical places in different countries. Get familiar with its culture and traditions! </p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<p class="text-center mx-auto paragraph-text" > Have you ever imagined to go for a trip but your friends are always busy <br/> and come up with different excuses all the time? This is a time to go for your RANDOM trip around the world! Let's make your travel experience even more productive! Add a course or skill that you would like to gather during your journey and we will generate 3 unexpected options around the world for you with the best places to visit on your free time in this city! Stop plan it! <i>"Adventure is just bad planning -Roald Amundsen" </i>.</p> <br/>
+
+<hr>
+
+<h2 class="text-center"> See previous random trips for other users: </h2><br/>
+
+<div class="container-fluid mx-auto px-auto" style="width: 70%">
+<div class="row">
+  <% @trips.each do |trip| %>
+  <div class="col-sm-6 " style="margin-bottom: 20px">
+  <div class="card">
+    <%if trip.actions.where(type: "Sightseeing").present? %>
+				<%= image_tag(trip.actions.where(type: "Sightseeing").first.picture, :style => "height: 180px; width: 375px; margin-left: 20px; object-fit: cover") %>
+			<%else%>
+				<%= image_tag('/alt.png', :style => "height: 180px; width: 375px; margin-left: 20px; object-fit: cover") %>					
+		<%end%>
+    <div class="card-body">
+      <h5 class="card-title"><%=link_to trip.location, trip_path(trip.id)%></h5>
+      <p class="card-text"><small class="text-muted">Trip id: <%=trip.id%></small></p>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Trip created: <%=trip.created_at%></small></p>
+    </div>
+  </div>
+</div> 
+    <%end%>
+</div>
+</div>
+ <footer style="margin-top: 10vh; margin-left: 5vh">
+      <p> <small class="text-muted"> Generate a random trip around the world <br/>
+      © Pegatrip Ltd 2019 </small></p>
+ </footer>
+
+<script>
+	function formatDate(date) {
+	    var d = new Date(date),
+	        month = '' + (d.getMonth() + 1),
+	        day = '' + d.getDate(),
+	        year = d.getFullYear();
+
+	    if (month.length < 2) month = '0' + month;
+	    if (day.length < 2) day = '0' + day;
+
+	    return [year, month, day].join('-');
+	}
+
+	var today = formatDate(Date())
+
+	var startDate = new Date();
+    var endDate = new Date();
+    var end = formatDate(endDate.setDate(startDate.getDate()+ Math.floor(Math.random() * 200)) + 30);
+
+
+
+	$("#generation-form").submit(function(event){
+		if($("#generation-form .form-group .form-control").eq(2).val() == "") {
+			$("#generation-form .form-group .form-control").eq(2).val(today);
+		} else {}
+
+		if($("#generation-form .form-group .form-control").eq(3).val() == "") {
+			$("#generation-form .form-group .form-control").eq(3).val(end);
+		} else {}
+
+	});
+
+</script>
+
+<style>
+
+.navbar { 
+	position: absolute;
+}
+</style>
+

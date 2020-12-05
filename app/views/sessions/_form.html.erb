@@ -1,0 +1,29 @@
+<%= form_for :session, :action => "", :autocomplete => "on", url: session_path do |form| %>
+<div class = "container col-md-10 text-center">
+    <div class="text-field form-group">
+      <%= form.label :email, :style => "font-size: 18px" %>
+      <%= form.text_field :email, type: 'email', :class => "form-control"%>
+    </div>
+
+    <br/>
+
+    <div class="password-field form-group">
+      <%= form.label :password, :style => "font-size: 18px" %>
+      <%= form.password_field :password, :class => "form-control" %>
+    </div>
+<br/>
+    <div >
+      <%= form.submit :class => "btn btn-outline btn-sign-in", :style => "border-color: #3ac9c6; color: #3ac9c6"%>
+    </div>
+
+    <div class="other-links">
+      <% if Clearance.configuration.allow_sign_up? %>
+      <%= link_to t(".forgot_password"), new_password_path, id: "link-to-forgot-password" %>
+      <%end %>
+      <div> <br/>
+        <button class="login-btns login-btns--google"><%= link_to "Sign in with Google", "/auth/google_oauth2", :class=> "link-to-buttons link-to-buttons--google" %></button><br/>
+        <button class="login-btns login-btns--facebook"><%= link_to "Sign in with Facebook", "/auth/facebook", :class=> "link-to-buttons link-to-buttons--facebook"  %></button>
+      </div>
+    </div>
+<% end %>
+</div> <br/>

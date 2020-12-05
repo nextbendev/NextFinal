@@ -1,0 +1,131 @@
+<div class="trip-title">
+	<h1 class="text-center h2 mb-3 font-weight-light"> Your trip to: <%=@trip.location%></h1>
+
+    <%if @trip.start_date != nil && @trip.end_date != nil%>
+	<p class="text-center mb-3 h6 font-italic font-weight-ligh" style="color: #D7E5DE">Starts from: <strong> <%= @trip.start_date.strftime('%a, %d %b %Y')%> </strong> and ends on: <strong> <%= @trip.end_date.strftime('%a, %d %b %Y')%> </strong></p>
+	<br/>
+    <%end%>
+
+    <div class="trip-content">
+        <p> <%= @course.title%> </p>
+        <p> <%= @course.course_provider%> </p>
+        <p> Estimated to be <%= @course.duration%> days, or <%= @course.duration/7%> weeks</p>
+    	<div class="textarea trip-content" ><%= raw @course.description.gsub("\\n", "").gsub("\\", "")%></div>
+        <br/>
+        <a style="color: white; text-decoration: underline;" href=<%=@course.link%>>Check out more on SwitchUp!</a>
+    </div>
+</div>
+
+<div class="darken-overlay">
+	<img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" id="coding-pic">
+</div> <br/><br/>
+
+<div class="content-title flex-container text-center">
+    <div>
+        <h1 class="text-center h2 mb-3 font-weight-light d-inline">Activities</h1>    
+    </div>
+</div> <br/>
+
+<div class="activities-container d-flex justify-content-center" style="flex-grow">
+    <% @activities.each_with_index do |a, ind| %>
+        <div class="card actions">
+                <%if FastImage.size(a.picture) == nil %>
+                    <%= image_tag('/alt.png', :class => "card-img-top", :alt => "Card image cap") %>
+                <%else%>
+                    <%= image_tag(a.picture, :class => "card-img-top", :alt => "Card image cap") %>
+                <%end%>
+                <div class="card-body">
+                    <h5 class="card-title"><%=link_to "#{a.title}", a.link%></h5>
+                    <p class="card-text"><%=a.description%></p>
+                     <div>           
+                       <%=link_to "#{@reviews['activities'][ind]} reviews from Yelp", a.link %> 
+                    </div>
+                    <%=link_to "Delete", trip_action_path(params[:id], a.id), method: :delete, data: { confirm: 'Are you sure you want to delete this action?' }, :class => "btn btn-danger float-right"%>
+                </div>
+        </div>
+    <% end %>
+    <div class="card actions">
+        <img class="card-img-top" src="http://www.quantumforquants.org/wp-content/themes/qaengine/img/default-thumbnail.jpg" alt="Card image cap" style="">
+        <div class="card-body">
+            <%= link_to "Add a new action",  "/trips/#{params[:id]}/actions?actiontype=Activity", class: "card-title", style: "font-size: 1.25rem; font-family: Arial, Helvetica, sans-serif"%>
+        </div>
+        </div>
+    </div>
+</div><br/>
+
+<div class="content-title flex-container text-center">
+    <div>
+        <h1 class="text-center h2 mb-3 font-weight-light d-inline">Food</h1>    
+    </div>
+</div> <br/>
+
+<div class="activities-container d-flex justify-content-center" style="flex-grow">
+    <% @foods.each_with_index do |f, ind| %>
+        <div class="card actions">
+                <%if FastImage.size(f.picture) == nil %>
+                    <%= image_tag('/alt.png', :class => "card-img-top", :alt => "Card image cap") %>
+                <%else%>
+                    <%= image_tag(f.picture, :class => "card-img-top", :alt => "Card image cap") %>
+                <%end%>
+                <div class="card-body">
+                    <h5 class="card-title"><%=link_to "#{f.title}", f.link %></h5>
+                    <p class="card-text"><%=f.description%></p>
+                     <div>           
+                        <%=link_to "#{@reviews['foods'][ind]} reviews from Yelp", f.link %> 
+                    </div>
+                    <%=link_to "Delete", trip_action_path(params[:id], f.id), method: :delete, data: { confirm: 'Are you sure you want to delete this action?' }, :class => "btn btn-danger float-right"%>
+                </div>
+        </div>
+    <% end %>
+    <div class="card actions">
+                <img class="card-img-top" src="http://www.quantumforquants.org/wp-content/themes/qaengine/img/default-thumbnail.jpg" alt="Card image cap" style="">
+                <div class="card-body">
+                    <%= link_to "Add a new action",  "/trips/#{params[:id]}/actions?actiontype=Food", class: "card-title", style: "font-size: 1.25rem; font-family: Arial, Helvetica, sans-serif"%>
+                </div>
+        </div>
+</div><br/>
+
+<div class="content-title flex-container text-center">
+    <div>
+        <h1 class="text-center h2 mb-3 font-weight-light d-inline">Sightseeings</h1>    
+    </div>
+</div> <br/>
+
+<div class="activities-container d-flex justify-content-center" style="flex-grow">
+    <% @sightseeings.each_with_index do |s, ind| %>
+        <div class="card actions">
+                <%if FastImage.size(s.picture) == nil %>
+                    <%= image_tag('/alt.png', :class => "card-img-top", :alt => "Card image cap") %>
+                <%else%>
+                    <%= image_tag(s.picture, :class => "card-img-top", :alt => "Card image cap") %>
+                <%end%>
+                <div class="card-body">
+                    <h5 class="card-title"><%=link_to "#{s.title}", s.link%></h5>
+                    <p class="card-text"><%=s.description%></p>
+                    <div>           
+                         <%=link_to "#{@reviews['sights'][ind]} reviews from Yelp", s.link %> 
+                    </div>
+                    <%=link_to "Delete", trip_action_path(params[:id], s.id), method: :delete, data: { confirm: 'Are you sure you want to delete this action?' }, :class => "btn btn-danger float-right"%>
+                </div>
+        </div>
+    <% end %>
+     <div class="card actions">
+                <img class="card-img-top" src="http://www.quantumforquants.org/wp-content/themes/qaengine/img/default-thumbnail.jpg" alt="Card image cap" style="">
+                <div class="card-body">
+                    <%= link_to "Add a new action",  "/trips/#{params[:id]}/actions?actiontype=Sightseeing", class: "card-title", style: "font-size: 1.25rem; font-family: Arial, Helvetica, sans-serif"%>
+                </div>
+        </div>
+</div>
+
+<style>
+.navbar {
+	position: absolute;
+}
+
+.card-img-top {
+object-fit: cover; 
+width: 286px; 
+height: 180px;
+}
+</style>
+
